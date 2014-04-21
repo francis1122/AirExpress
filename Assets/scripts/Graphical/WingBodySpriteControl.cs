@@ -8,6 +8,8 @@ public class WingBodySpriteControl : MonoBehaviour {
 	public bool isPlayer = false;
 	public GameObject wings;
 	public GameObject body;
+	public GameObject wingStroke;
+	public GameObject bodyStroke;
 	// Use this for initialization
 	void Start () {
 	
@@ -35,32 +37,27 @@ public class WingBodySpriteControl : MonoBehaviour {
 		//wing graphics
 
 		float testY = Mathf.Abs (Mathf.Sin (rotation));
-		float testX = Mathf.Abs (Mathf.Cos (rotation));
-		if (testY < 0.1f) {
-			testY = 0.0f;
+	//	float testX = Mathf.Abs (Mathf.Cos (rotation));
+		if (testY < 0.2f) {
+			testY = 0.2f;
 		}
 		if (testY > 0.7f) {
 			testY = 0.7f;
 		}
 		if (wings) {
-			wings.GetComponent<SpriteRenderer> ().transform.localScale = new Vector3 (testY, 0.7f, 1.0f);
+			wings.GetComponent<SpriteRenderer> ().transform.localScale = new Vector3 (testY, 0.8f, 1.0f);
+			if(isPlayer)
+			wingStroke.GetComponent<SpriteRenderer> ().transform.localScale = new Vector3 (1.3f * testY , 0.7f * 1.5f, 1.0f);
 		}
 
 
 		//animate thruster
 		if (isPlayer) {
 			if (GetComponent<PlayerControl> ().Forward) {
-					thrustSprite.GetComponent<SpriteRenderer> ().enabled = true;
-				} else {
-					thrustSprite.GetComponent<SpriteRenderer> ().enabled = false;
-				}
-
-			if (GetComponent<Weapon_Player_Boost> ().boostingTimer > 0.0f) {
-						thrustSprite.transform.localScale =  new Vector3(2.0f, 2.5f, 1.0f);
-				} else {
-						thrustSprite.transform.localScale =  new Vector3(1.5f, 1.5f, 1.0f);
-				}
+				thrustSprite.GetComponent<SpriteRenderer> ().enabled = true;
+			} else {
+				thrustSprite.GetComponent<SpriteRenderer> ().enabled = false;
 			}
-
+		}
 	}
 }

@@ -4,10 +4,13 @@ using System.Collections;
 public class PlayerManager : MonoBehaviour {
 
 	public int money;
+	public GameObject[] abilityArray;
 
 	// Use this for initialization
 	void Start () {
 		DontDestroyOnLoad(gameObject);
+		//load in 
+
 	}
 
 	void OnGUI () {

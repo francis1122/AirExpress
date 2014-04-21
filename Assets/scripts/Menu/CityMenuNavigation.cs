@@ -33,11 +33,11 @@ public class CityMenuNavigation : MonoBehaviour {
 	//	Debug.Log("added delivery" + GameManager.deliveryManager.activeDeliveryArray.Count);
 
 		//find all delivery locations on map
-		if (GameManager.deliveryManager.activeDeliveryArray.Count < 3) {
-						GameObject[] deliveryArray = GameObject.FindGameObjectsWithTag ("DeliveryLocation");
-			int possible = Mathf.RoundToInt( Random.value * 100000.0f )%deliveryArray.Length;
-						GameManager.deliveryManager.addPackage (deliveryArray [possible].transform.position);
-				}
+		//if (GameManager.deliveryManager.activeDeliveryArray.Length < 4) {
+		//	GameObject[] deliveryArray = GameObject.FindGameObjectsWithTag ("DeliveryLocation");
+		//	int possible = Mathf.RoundToInt( Random.value * 100000.0f )%deliveryArray.Length;
+			GameManager.deliveryManager.addPackage ();
+			//	}
 		//	delivery.location = deliveryArray [0].transform.position;
 
 		// choose one of those and spawn a package there

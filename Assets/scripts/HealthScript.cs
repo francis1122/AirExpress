@@ -56,10 +56,10 @@ public class HealthScript : MonoBehaviour {
 		if (flashCoolDown < 0.0) {
 			WingBodySpriteControl sprites = GetComponent<WingBodySpriteControl>();
 			if(isPlayer){
-				if(sprites.body)
-					sprites.body.GetComponent<SpriteRenderer>().color = Color.grey;
-				if(sprites.wings)
-					sprites.wings.GetComponent<SpriteRenderer>().color = Color.grey;
+			//	if(sprites.body)
+			//		sprites.body.GetComponent<SpriteRenderer>().color = Color.grey;
+			//	if(sprites.wings)
+			//		sprites.wings.GetComponent<SpriteRenderer>().color = Color.grey;
 			}else{
 				if(sprites.body)
 					sprites.body.GetComponent<SpriteRenderer>().color = Color.black;
@@ -73,11 +73,11 @@ public class HealthScript : MonoBehaviour {
 	public void offsetHealth(int healthOffset){
 		currentHealth += healthOffset;
 		if (healthOffset < 0) {
-			WingBodySpriteControl sprites = GetComponent<WingBodySpriteControl>();
-			if(sprites.body)
-				sprites.body.GetComponent<SpriteRenderer>().color = Color.red;
-			if(sprites.wings)
-				sprites.wings.GetComponent<SpriteRenderer>().color = Color.red;
+			//WingBodySpriteControl sprites = GetComponent<WingBodySpriteControl>();
+	//		if(sprites.body)
+			//	sprites.body.GetComponent<SpriteRenderer>().color = Color.red;
+		//	if(sprites.wings)
+			//	sprites.wings.GetComponent<SpriteRenderer>().color = Color.red;
 			
 			flashCoolDown = .06f;
 				}
