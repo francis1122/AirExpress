@@ -17,8 +17,8 @@ public class ActionExecute : MonoBehaviour {
 	}
 
 	protected bool IsEnemyCloseToCity(){
-		float minDistance = 10000.0f;
-		Vector2 actionPos = (Vector2)transform.position;
+	//	float minDistance = 10000.0f;
+	//	Vector2 actionPos = (Vector2)transform.position;
 		GameObject[] enemies = GameObject.FindGameObjectsWithTag ("Enemy");
 		bool isAggro = false;
 		foreach (GameObject enemy in enemies) {

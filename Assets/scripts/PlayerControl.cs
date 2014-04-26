@@ -278,14 +278,15 @@ public class PlayerControl : MonoBehaviour {
 	public void shootPackage(GameObject package){
 		package.transform.position = transform.position;
 		PackageScript script = package.GetComponent<PackageScript> ();
-		script.isActive = true;
+		script.beginActive ();
 		package.SetActive (true);
 
 		PlayerPlaneController playerControl = GetComponent<PlayerPlaneController>();
 		float testY = Mathf.Sin (playerControl.player_angle);
 		float testX = Mathf.Cos (playerControl.player_angle);
-		package.transform.position += new Vector3 (testX * .6f, testY * .6f, 0f);
-		package.rigidbody2D.velocity = new Vector2 (testX * 6.0f, testY * 6.0f);
+		package.transform.position += new Vector3 (testX * .5f, testY * .5f, 0f);
+		Vector2 planeVelocity = rigidbody2D.velocity;
+		package.rigidbody2D.velocity = (new Vector2 (testX * 4.0f, testY * 4.0f)) + planeVelocity;
 		GameManager.deliveryManager.removePackage (package);
 
 	}
@@ -315,7 +316,10 @@ public class PlayerControl : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D collision){
 		if (collision.gameObject.tag == "package") {
-			GameManager.deliveryManager.collectPackage(collision.gameObject);
+			PackageScript script = collision.gameObject.GetComponent<PackageScript>();
+			if(script.isActive){
+				GameManager.deliveryManager.collectPackage(collision.gameObject);
+			}
 
 			//should reward the player here eventually
 		}

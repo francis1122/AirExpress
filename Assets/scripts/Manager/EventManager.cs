@@ -38,7 +38,8 @@ public class EventManager : MonoBehaviour {
 			pos += (Vector3)norm * 30.0f + newPosition;
 			pos.z = -9;
 			//+ new Vector3(1.0f,1.0f,0.0f)
-			GameObject enemy = (GameObject)Instantiate(enemyObject, pos, Quaternion.identity);
+			//GameObject enemy = 
+			Instantiate(enemyObject, pos, Quaternion.identity);
 		}
 	}
 
@@ -60,7 +61,8 @@ public class EventManager : MonoBehaviour {
 			newPosition += pos;
 
 			//+ new Vector3(1.0f,1.0f,0.0f)
-			GameObject enemy = (GameObject)Instantiate(enemyDefendObject, newPosition, Quaternion.identity);
+			//GameObject enemy = (GameObject)
+			Instantiate(enemyDefendObject, newPosition, Quaternion.identity);
 			enemyDefendObject.GetComponent<DefendBehavior>().positionToDefend = defensePosition;
 		}
 	}

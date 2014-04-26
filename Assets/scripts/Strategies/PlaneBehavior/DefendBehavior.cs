@@ -49,7 +49,7 @@ public class DefendBehavior : PlaneBehavior {
 			positionToDefend = objectToDefend.transform.position;
 		}
 
-		PlaneController planeController = this.GetComponent<PlaneController> ();
+		//PlaneController planeController = this.GetComponent<PlaneController> ();
 		// adjust targetLocation
 		//if(targetLocationUpdate > (.2f + Random.value/2.0f)){
 

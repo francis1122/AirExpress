@@ -22,8 +22,8 @@ public class CameraFollow : MonoBehaviour
 		
 	{	
 		if (tag == "MainCamera") {
-					//	camera.orthographicSize = (Screen.height / 100f / 2.0f); // 100f is the PixelPerUnit that you have set on your sprite. Default is 100.	
-				}
+					//	camera.orthographicSize = (Screen.height / 100f / 2.0f); // 100f is the PixelPerUnit that you have set on your sprite. Default is 100.				
+		}
 	}
 
 	// Use this for initialization

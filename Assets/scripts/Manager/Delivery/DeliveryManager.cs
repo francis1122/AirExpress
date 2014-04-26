@@ -2,6 +2,7 @@
 using System.Collections;
 public class DeliveryManager : MonoBehaviour {
 
+	public ArrayList allPackagesArray = new ArrayList();
 	public GameObject[] activeDeliveryArray = new GameObject[4];
 	public GameObject package;
 
@@ -17,8 +18,29 @@ public class DeliveryManager : MonoBehaviour {
 
 	public void addPackage(){
 		GameObject[] deliveryArray = GameObject.FindGameObjectsWithTag ("DeliveryLocation");
-		int possible = Mathf.RoundToInt( Random.value * 100000.0f )%deliveryArray.Length;
-		GameObject dropoffObject = deliveryArray [possible];
+		ArrayList validLocations = new ArrayList ();
+		//remove already active delivery locations
+		for (int i = 0; i < deliveryArray.Length; i++) {
+			GameObject possibleLocation = deliveryArray[i];
+			bool locationUsed = false;
+			for(int j = 0; j < allPackagesArray.Count; j++){
+				GameObject package = (GameObject)allPackagesArray[j];
+				if(package != null){
+					PackageScript script = package.GetComponent<PackageScript>();
+					if(possibleLocation == script.dropoffObject){
+						locationUsed = true;
+					}
+				}
+			}
+			if(!locationUsed){
+				validLocations.Add (possibleLocation);
+			}
+		}
+
+
+
+		int possible = Mathf.RoundToInt( Random.value * 100000.0f )%validLocations.Count;
+		GameObject dropoffObject = (GameObject)validLocations [possible];
 		Vector3 pos = dropoffObject.transform.position;
 
 
@@ -39,9 +61,10 @@ public class DeliveryManager : MonoBehaviour {
 
 				script.dropoffObject = dropoffObject;
 				script.dropoffLocation = pos;
-				script.isActive = false;
-				newPackage.SetActive (false);
+				script.stopActive ();
+				//newPackage.SetActive (false);
 				activeDeliveryArray[i] = newPackage;
+				allPackagesArray.Add(newPackage);
 				dropoffObject.renderer.enabled = true;
 				//update interface
 				GameObject planeInterface = GameObject.FindGameObjectWithTag ("PlaneInterface");
@@ -59,8 +82,8 @@ public class DeliveryManager : MonoBehaviour {
 			if(activeDeliveryArray[i] == null){
 				activeDeliveryArray[i] = package;
 				PackageScript script = package.GetComponent <PackageScript> ();
-				script.isActive = false;
-				package.SetActive (false);
+				script.stopActive ();
+				//package.SetActive (false);
 				//activeDeliveryArray.Add (newPackage);
 				GameObject planeInterface = GameObject.FindGameObjectWithTag ("PlaneInterface");
 				Interface_Plane yeah = planeInterface.GetComponent<Interface_Plane> ();
@@ -83,7 +106,13 @@ public class DeliveryManager : MonoBehaviour {
 		Interface_Plane yeah = planeInterface.GetComponent<Interface_Plane> ();
 		yeah.updateInterface ();
 		//activeDeliveryArray.Remove (packageToBeRemoved);
+	}
 
+	public void destroyPackage(GameObject packageToDestroy){
+		allPackagesArray.Remove(packageToDestroy);
+		PackageScript script = packageToDestroy.GetComponent<PackageScript> ();
+		script.dropoffObject.renderer.enabled = false;
+		GameObject.Destroy (packageToDestroy);
 
 	}
 }

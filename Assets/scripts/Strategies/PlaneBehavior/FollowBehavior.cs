@@ -16,7 +16,7 @@ public class FollowBehavior : PlaneBehavior {
 	// Use this for initialization
 	void Start () {
 		GameObject player = GameObject.FindGameObjectWithTag ("Player");
-		float distance = Vector3.Distance(player.transform.position, transform.position);
+		//float distance = Vector3.Distance(player.transform.position, transform.position);
 		// follow offset to reduce bunching
 		Vector3 newPosition = (Vector3)Random.insideUnitCircle * followCircleOffset;
 		offsetLocation = newPosition;

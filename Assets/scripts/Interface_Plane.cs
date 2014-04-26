@@ -39,7 +39,7 @@ public class Interface_Plane : MonoBehaviour {
 	public void createInterface(){
 		PlayerControl player = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerControl> ();
 		for (int i = 0; i < player.abilityArray.Count; i ++) {
-			Vector3 pos = new Vector3(-.4f + .18f* i , -.85f, 0) + gameObject.transform.position;
+			Vector3 pos = new Vector3(-.7f + .18f* i , -1.85f, 0) + gameObject.transform.position;
 			//GameObject button = (GameObject)Instantiate (abilityButton, pos, Quaternion.identity);
 			//abilityButton.transform.position = pos;
 			GameObject button = NGUITools.AddChild(this.gameObject, abilityButton);
@@ -62,7 +62,7 @@ public class Interface_Plane : MonoBehaviour {
 		//create the package buttons
 		//PlayerControl player = GameObject.FindGameObjectWithTag ("Player").GetComponent<PlayerControl> ();
 		for (int i = 0; i < GameManager.deliveryManager.activeDeliveryArray.Length; i ++) {
-			Vector3 pos = new Vector3(.4f + .18f* i , -.85f, 0) + gameObject.transform.position;
+			Vector3 pos = new Vector3(.3f + .18f* i , -1.85f, 0) + gameObject.transform.position;
 			//GameObject button = (GameObject)Instantiate (abilityButton, pos, Quaternion.identity);
 			//abilityButton.transform.position = pos;
 			GameObject package = GameManager.deliveryManager.activeDeliveryArray[i];

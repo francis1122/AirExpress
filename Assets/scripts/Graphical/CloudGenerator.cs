@@ -44,7 +44,7 @@ public class CloudGenerator : MonoBehaviour {
 			cloudPosition.Normalize();
 			cloudPosition *= spawnCloudRange;
 			cloudPosition += player.transform.position;
-			cloudPosition.z = 1;
+			cloudPosition.z = 4;
 			GameObject cloud = (GameObject)Instantiate (cloudPrefab, cloudPosition, Quaternion.identity);
 			activeClouds.Add (cloud);
 		}
